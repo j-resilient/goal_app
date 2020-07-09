@@ -5,11 +5,25 @@ class SessionsController < ApplicationController
 
     def create
         # validate credentials
-        # set session token
+        user = User.find_by_credentials(
+            session_params[:username],
+            session_params[:password]
+        )
+
+        if user.nil?
+            flash.now[:errors] = ["Incorrect credentials."]
+            render :new
+        else
+            login!(user)
+        end
     end
 
     def destroy
-        # log user out
-        # reset session token
+        logout!
+    end
+
+    private
+    def session_params
+        params.require(:session).permit(:username, :password)
     end
 end
