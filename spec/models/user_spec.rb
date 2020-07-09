@@ -12,7 +12,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:test_user) { User.create(username: "a", password: "password") }
+  subject(:test_user) { User.create!(username: "a", password: "password") }
 
   describe 'validations' do
     it { should validate_presence_of(:username) }
@@ -28,6 +28,7 @@ RSpec.describe User, type: :model do
   describe '::find_by_credentials' do
     context 'where user exists' do
       it 'returns the correct user object' do
+        test_user.save!
         user = User.find_by_credentials('a', 'password')
         expect(user.id).to eq(test_user.id)
         expect(user).to be_an_instance_of(User)
