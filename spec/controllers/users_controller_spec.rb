@@ -21,7 +21,7 @@ RSpec.describe UsersController, type: :controller do
         context 'with invalid params' do
             it 'validates the user\'s credentials' do
                 post :create, params: { user: { username: 'a' } }
-                expect(response).to_render_template(:new)
+                expect(response).to render_template(:new)
                 expect(flash[:errors]).to be_present
             end
 
