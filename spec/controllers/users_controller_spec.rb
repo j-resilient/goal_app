@@ -28,7 +28,7 @@ RSpec.describe UsersController, type: :controller do
             it 'validates that the password is at least 6 characters' do
                 post :create, params: { user: { username: "a", password: "pass" } }
                 expect(flash[:errors]).to be_present
-                expect(response).to_render_template(:new)
+                expect(response).to render_template(:new)
             end
         end
     end
