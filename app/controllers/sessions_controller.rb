@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     end
 
     def create
-        # validate credentials
         user = User.find_by_credentials(
             session_params[:username],
             session_params[:password]
