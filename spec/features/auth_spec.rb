@@ -2,7 +2,10 @@ require 'rails_helper'
 
 
 feature 'the signup process' do
-  scenario 'has a new user page'
+  scenario 'has a new user page' do
+    visit new_user_url
+    expect(page).to have_content "Sign Up!"
+  end
 
   feature 'signing up a user' do
 
