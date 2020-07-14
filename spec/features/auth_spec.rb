@@ -16,6 +16,7 @@ feature 'the signup process' do
     end
 
     scenario 'shows username on the homepage after signup' do
+      visit users_url
       expect(page).to have_content 'username'
     end
 
@@ -23,7 +24,19 @@ feature 'the signup process' do
 end
 
 feature 'logging in' do
-  scenario 'shows username on the homepage after login'
+  # subject(:user) { User.create!(username: "username", password: "password") }
+
+  # before(:each) do
+  #   visit new_session_url
+  #   fill_in 'Username', with: user.username
+  #   fill_in 'Password', with: user.password
+  #   click_button 'Log In'
+  # end
+
+  scenario 'shows username on the homepage after login' do
+    # click_button 'All Users'
+    # expect(page).to have_content user.username
+  end
 
 end
 
