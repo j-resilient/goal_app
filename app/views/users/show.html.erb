@@ -1,1 +1,7 @@
-<h1>User show page</h1>
+<p>Welcome <%= @user.username %></p>
+<form action="<%= session_url %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <%= auth_token %>
+    <input type="submit" value="Log Out">
+</form>
+<h2><%= @user.username %>'s Profile</h2>
