@@ -24,18 +24,18 @@ feature 'the signup process' do
 end
 
 feature 'logging in' do
-  # subject(:user) { User.create!(username: "username", password: "password") }
+  subject(:user) { User.create!(username: "username", password: "password") }
 
-  # before(:each) do
-  #   visit new_session_url
-  #   fill_in 'Username', with: user.username
-  #   fill_in 'Password', with: user.password
-  #   click_button 'Log In'
-  # end
+  before(:each) do
+    visit new_session_url
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_button 'Log In'
+  end
 
   scenario 'shows username on the homepage after login' do
-    # click_button 'All Users'
-    # expect(page).to have_content user.username
+    visit users_url
+    expect(page).to have_content user.username
   end
 
 end
