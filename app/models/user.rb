@@ -17,6 +17,8 @@ class User < ApplicationRecord
     validates :username, uniqueness: true
     validates :password, length: { minimum: 6, allow_nil: true }
 
+    has_many :goals, dependent: :destroy
+
     def password=(password)
         @password = password
         self.password_digest = BCrypt::Password.create(password)
