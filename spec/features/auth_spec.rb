@@ -41,8 +41,19 @@ feature 'logging in' do
 end
 
 feature 'logging out' do
-  scenario 'begins with a logged out state'
+  let(:user) { User.create!(username: 'alice', password: 'password') }
+  before(:each) do
+    visit user_url(user)
+    click_button 'Log Out'
+  end
 
-  scenario 'doesn\'t show username on the homepage after logout'
+  scenario 'begins with a logged out state' do
+    
+  end
+
+  scenario 'doesn\'t show username on the homepage after logout' do
+    visit users_url
+    expect(page).to_not have_content "Welcome #{user.username}"
+  end
 
 end
