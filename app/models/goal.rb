@@ -19,8 +19,8 @@ class Goal < ApplicationRecord
     validates :private, :completed, inclusion: { in: [true, false] }
 
     def set_private_and_completed
-        self.private = false
-        self.completed = false
+        self.private ||= false
+        self.completed ||= false
     end
 
     belongs_to :user
