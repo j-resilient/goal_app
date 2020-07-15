@@ -21,6 +21,23 @@ class GoalsController < ApplicationController
         end
     end
 
+    def edit
+        @goal = Goal.find_by(id: params[:id])
+        render :edit
+    end
+    
+    def update
+        @goal = Goal.find_by(id: params[:id])
+        
+        if @goal.update(goal_params)
+            flash[:goal] = "Goal successfully edited!"
+            redirect_to goal_url(@goal)
+        else
+            flash.now[:errors] = @goal.errors.full_messages
+            render :edit
+        end
+    end
+
     private
     def goal_params
         params.require(:goal).permit(:title, :details, :private, :completed)
