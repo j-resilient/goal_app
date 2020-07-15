@@ -1,0 +1,46 @@
+<%= content_for :messages do %>
+    <% if flash[:goal] %>
+      <p><%= flash[:goal] %></p>
+      <% flash[:goal] = nil %>
+    <% end %>
+<% end %>
+
+<main>
+    <section>
+        <h2>Goal</h2>
+        <table>
+            <tr>
+                <th>Title: </th>
+                <td><%= @goal.title %></td>
+            </tr>
+
+            <tr>
+                <th>Details: </th>
+                <td><%= @goal.details %></td>
+            </tr>
+
+            <tr>
+                <th>Visibility: </th>
+                <td><%= @goal.private ? "Private" : "Public" %></td>
+            </tr>
+
+            <tr>
+                <th>Finished?: </th>
+                <td><%= @goal.completed ? "Completed" : "Ongoing" %></td>
+            </tr>
+
+            <tr>
+                <th>Completed?: </th>
+                <td>COMPLETE BUTTON HERE</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <!-- Comments here -->
+    </section>
+
+    <section>
+        <!-- New comment form here -->
+    </section>
+</main>
