@@ -3,6 +3,18 @@
     <!-- New Comment Form -->
 </div>
 <div>
-    <!-- Goals section -->
+    <ul>
+        <% @user.goals.each do |g| %>
+            <li>
+                <%= link_to g.title, goal_url(g) %>
+                <p><%= g.private ? "private" : "public" %></p>
+                <form action="<%= goal_url(g) %>" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <%= auth_token %>
+                    <input type="submit" value="delete '<%= g.title %>' goal">
+                </form>
+            </li>
+        <% end %>
+    </ul>
 </div>
 <%= link_to 'All Users', users_url %>
