@@ -48,7 +48,8 @@ feature 'logging out' do
   end
 
   scenario 'begins with a logged out state' do
-    
+    visit root_url
+    expect(page).to have_content 'Log In'
   end
 
   scenario 'doesn\'t show username on the homepage after logout' do
