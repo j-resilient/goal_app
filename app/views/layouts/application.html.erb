@@ -11,6 +11,23 @@
 
   <body>
     <h1>Goaling App</h1>
+    <%= yield :messages %>
+
+    <nav>
+      <% if current_user.nil? %>
+          <%= link_to 'Sign Up', new_user_url %>
+          <p>or</p>
+          <%= link_to 'Log In', new_session_url %>
+      <% else %>
+          <p>Welcome <%= current_user.username %></p>
+          <form action="<%= session_url %>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <%= auth_token %>
+              <input type="submit" value="Log Out">
+          </form>
+      <% end %>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
