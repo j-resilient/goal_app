@@ -28,7 +28,7 @@ class GoalsController < ApplicationController
     
     def update
         @goal = Goal.find_by(id: params[:id])
-        
+
         if @goal.update(goal_params)
             flash[:goal] = "Goal successfully edited!"
             redirect_to goal_url(@goal)
@@ -36,6 +36,13 @@ class GoalsController < ApplicationController
             flash.now[:errors] = @goal.errors.full_messages
             render :edit
         end
+    end
+
+    def destroy
+        goal = Goal.find_by(id: params[:id])
+        user = User.find_by(id: goal.user_id)
+        goal.destroy
+        redirect_to user_url(user)
     end
 
     private
