@@ -15,7 +15,11 @@ feature 'creating goals' do
         expect(page).to have_content 'Goal saved!'
     end
 
-    feature 'with invalid parameters'
+    scenario 'with invalid parameters' do
+        visit new_goal_url
+        click_button 'New Goal'
+        expect(page).to have_content 'Title can\'t be blank'
+    end
 end
 
 feature 'updating goals'
