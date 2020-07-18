@@ -22,6 +22,16 @@ feature 'creating goals' do
     end
 end
 
-feature 'updating goals'
+feature 'updating goals' do
+    let(:user) { User.create!(username: "username", password: "password") }
+    subject(:goal) { Goal.create!(title: "test goal", user_id: user.id) }
+
+    scenario 'goal is completed' do
+        visit edit_goal_url(goal)
+        choose('Completed')
+        click_button 'Update Goal'
+        expect(page).to have_content 'Goal successfully edited!'
+    end
+end
 
 feature 'destroying goals'
