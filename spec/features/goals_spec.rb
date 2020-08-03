@@ -34,4 +34,20 @@ feature 'updating goals' do
     end
 end
 
-feature 'destroying goals'
+feature 'destroying goals' do
+    let(:user) { User.create!(username: "username", password: "password") }
+
+    before(:each) do
+        visit new_session_url
+        fill_in "Username", with: user.username
+        fill_in "Password", with: user.password
+        click_button "Log In"
+    end
+
+    scenario 'delete goal' do
+        goal = Goal.create!(title: "test goal", user_id: user.id)
+        visit user_url(user)
+        click_button "delete \'#{goal.title}\' goal"
+        expect(page).to_not have_content goal.title
+    end
+end
