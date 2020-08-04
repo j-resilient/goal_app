@@ -1,7 +1,12 @@
 <h2><%= @user.username %>'s Profile</h2>
-<div>
-    <!-- New Comment Form -->
-</div>
+<section>
+    <% @user.comments.each do |comment| %>
+        <p><%= comment.comment %></p>
+    <% end %>
+</section>
+<section>
+    <%= render 'user_comments/user_comment_form', user_id: @user.id %>
+</section>
 <div>
     <ul>
         <% @user.goals.each do |g| %>
