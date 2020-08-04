@@ -37,10 +37,13 @@
     </section>
 
     <section>
-        <!-- Comments here -->
+        <h4>Comments</h4>
+        <% @goal.comments.each do |comment| %>
+            <p><%= comment.comment %></p>
+        <% end %>
     </section>
 
     <section>
-        <!-- New comment form here -->
+        <%= render 'goal_comments/goal_comments_form', goal_id: @goal.id %>
     </section>
 </main>
