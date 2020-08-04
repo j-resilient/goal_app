@@ -34,7 +34,7 @@ class User < ApplicationRecord
     # comments the user has received on their user page
     has_many :comments,
         primary_key: :id,
-        foreign_key: :author_id,
+        foreign_key: :user_id,
         class_name: :UserComment,
         dependent: :destroy
 
