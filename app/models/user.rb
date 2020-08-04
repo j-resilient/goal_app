@@ -19,10 +19,24 @@ class User < ApplicationRecord
 
     has_many :goals, dependent: :destroy
 
-    has_many :authored_comments,
+    # comments the user has written on goals
+    has_many :authored_goal_comments,
         primary_key: :id,
         foreign_key: :author_id,
         class_name: :GoalComment
+
+    # comments the user has written on other people's user pages
+    has_many :authored_user_comments,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :UserComment
+
+    # comments the user has received on their user page
+    has_many :comments,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :UserComment,
+        dependent: :destroy
 
     def password=(password)
         @password = password
