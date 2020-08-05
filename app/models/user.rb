@@ -10,6 +10,8 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
+    include Commentable
+    
     attr_reader :password
     after_initialize :set_session_token
 
@@ -18,7 +20,6 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6, allow_nil: true }
 
     has_many :goals, dependent: :destroy
-    has_many :comments, as: :commentable, dependent: :destroy
 
     def password=(password)
         @password = password

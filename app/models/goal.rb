@@ -12,6 +12,8 @@
 #  updated_at :datetime         not null
 #
 class Goal < ApplicationRecord
+    include Commentable
+    
     after_initialize :set_private_and_completed
 
     validates :user_id, :title, presence: true
@@ -24,5 +26,4 @@ class Goal < ApplicationRecord
     end
 
     belongs_to :user
-    has_many :comments, as: :commentable, dependent: :destroy
 end
