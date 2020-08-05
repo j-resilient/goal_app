@@ -18,8 +18,6 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6, allow_nil: true }
 
     has_many :goals, dependent: :destroy
-
-    # comments the user has written on goals
     has_many :comments, as: :commentable, dependent: :destroy
 
     def password=(password)
