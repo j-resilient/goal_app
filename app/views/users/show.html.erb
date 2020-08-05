@@ -1,7 +1,7 @@
 <h2><%= @user.username %>'s Profile</h2>
 <section>
     <% @user.comments.each do |comment| %>
-        <p><%= comment.comment %></p>
+        <p><%= comment.comment_text %></p>
     <% end %>
 </section>
 <section>
