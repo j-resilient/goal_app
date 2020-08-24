@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-    # new, create, show
     describe 'GET #new' do
         it 'renders the new user template' do
             get :new, {}
