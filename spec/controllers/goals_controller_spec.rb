@@ -36,8 +36,4 @@ RSpec.describe GoalsController, type: :controller do
             end
         end
     end
-
-    describe 'POST #update'
-
-    describe 'DELETE #destroy'
 end
