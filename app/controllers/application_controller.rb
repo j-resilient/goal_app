@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    before_action :require_login
     helper_method :current_user, :login!, :logout
     
     def current_user
@@ -16,5 +17,12 @@ class ApplicationController < ActionController::Base
         current_user.reset_session_token!
         session[:session_token] = nil
         @current_user = nil
+    end
+
+    private
+    def require_login
+        unless current_user
+            redirect_to new_user_url
+        end
     end
 end
