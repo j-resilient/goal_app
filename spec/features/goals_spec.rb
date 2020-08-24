@@ -23,8 +23,13 @@ feature 'creating goals' do
 end
 
 feature 'updating goals' do
-    let(:user) { User.create!(username: "username", password: "password") }
-    subject(:goal) { Goal.create!(title: "test goal", user_id: user.id) }
+    before(:each) do
+        visit new_user_url
+        fill_in 'username', with: 'username'
+        fill_in 'password', with: 'password'
+        click_button 'Sign Up'
+    end
+    subject(:goal) { Goal.create!(title: "test goal", user_id: User.last.id) }
 
     scenario 'goal is completed' do
         visit edit_goal_url(goal)
